@@ -2,6 +2,7 @@ import React from 'react';
 import ReactPlayer from 'react-player';
 import { useDispatch, useSelector } from 'react-redux';
 import { TOGGLE_VIDEO_COMPLETED } from '../../actions';
+import { isCompletedSelector } from '../../selectors';
 import styles from './VideoPlayer.module.scss';
 
 type Props = {
@@ -11,7 +12,7 @@ type Props = {
 
 const VideoPlayer: React.FC<Props> = ({ url, id }) => {
   const dispatch = useDispatch();
-  const completed = useSelector((state: any) => state.playlist?.playlistVideos?.find((video) => video.id === id)?.completed ?? false);
+  const completed = useSelector((state) => isCompletedSelector(state, id));
 
   const handleEnded = () => {
     if (!completed) {
