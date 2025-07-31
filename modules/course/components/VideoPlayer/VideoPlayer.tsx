@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
 import { useDispatch, useSelector } from 'react-redux';
-import { TOGGLE_VIDEO_COMPLETED } from '../../actions';
-import { isCompletedSelector } from '../../selectors';
+import { TOGGLE_VIDEO_COMPLETED } from "@/modules/course/actions";
+import { isCompletedSelector } from "@/modules/course/selectors";
 import styles from './VideoPlayer.module.scss';
 
 type Props = {
@@ -23,7 +23,6 @@ const VideoPlayer: React.FC<Props> = ({ url, id }) => {
   return (
     <div className={styles['video-player']}>
       <ReactPlayer url={url} controls width='100%' height='100%' onEnded={handleEnded} />
-      {completed && <div className={styles.completedBadge}>✓ Completed</div>}
     </div>
   );
 };
