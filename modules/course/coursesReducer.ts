@@ -1,4 +1,4 @@
-import { REMOVE_COURSE } from './actions';
+import { REMOVE_COURSE, ADD_COURSE } from './actions';
 
 const initialState = {
     courses: [
@@ -14,6 +14,11 @@ const initialState = {
         return {
           ...state,
           courses: state.courses.filter(course => course.slug !== action.payload.slug)
+        };
+      case ADD_COURSE:
+        return {
+          ...state,
+          courses: [...state.courses, { slug: action.payload.slug }]
         };
       default:
         return state;
