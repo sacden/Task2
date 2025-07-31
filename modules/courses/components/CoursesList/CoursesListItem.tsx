@@ -1,3 +1,7 @@
+"use client";
+import { useDispatch } from "react-redux";
+import { removeCourse } from "@/modules/course/actions";
+
 import styles from "./CoursesListItem.module.scss";
 
 type Props = {
@@ -5,10 +9,16 @@ type Props = {
 };
 
 const CoursesListItem: React.FC<Props> = ({ slug }) => {
+  const dispatch = useDispatch();
+
+  const handleRemove = () => {
+    dispatch(removeCourse({ slug }));
+  };
+
   return (
     <li className={styles["courses-list-item"]}>
       {slug}
-      <button>remove course</button>
+      <button onClick={handleRemove}>remove course</button>
     </li>
   );
 };
